@@ -60,3 +60,9 @@ Supervisor Agent
    └── Report Generator Agent
    ↓
 Final Finance Report
+
+## Example Output
+
+Below is the result of running the system:
+
+![result](./result.png)
