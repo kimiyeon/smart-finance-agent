@@ -48,7 +48,15 @@ DeepAgents를 활용하여 구현한 멀티 에이전트 기반 스마트 가계
 
 ---
 
-## 🧠 System Architecture
+## Example Output
+
+Below is the result of running the system:
+
+![result](./result.png)
+
+---
+
+## System Architecture
 
 ```text
 User Input
@@ -60,9 +68,3 @@ Supervisor Agent
    └── Report Generator Agent
    ↓
 Final Finance Report
-
-## Example Output
-
-Below is the result of running the system:
-
-![result](./result.png)
