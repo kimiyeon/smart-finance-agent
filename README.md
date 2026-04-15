@@ -1,4 +1,4 @@
-# 🧠 Smart Finance Agent  
+# Smart Finance Agent  
 ### DeepAgents 기반 다중 에이전트 금융 분석 시스템
 
 > 본 프로젝트는 DeepAgents 기반 다중 에이전트 시스템 구현 과제를 위해 제작되었습니다.
