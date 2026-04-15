@@ -102,6 +102,7 @@ DeepAgents는 Supervisor–Subagent 구조를 통해
 ---
 
 ## 📌 7. 시스템 아키텍처
+```
 사용자 입력
 ↓
 Supervisor Agent
@@ -111,7 +112,7 @@ Supervisor Agent
 └── Report Writer Agent
 ↓
 최종 금융 리포트
-
+```
 ---
 
 ## 📌 8. 구현 기능
@@ -133,11 +134,12 @@ Supervisor Agent
 ## 📌 9. 실행 예시
 
 입력 데이터:
+```
 스타벅스 5000원
 지하철 1250원
 쿠팡 쇼핑 32000원
 배달의민족 18000원
-
+```
 
 출력 결과:
 
