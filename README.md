@@ -1,142 +1,205 @@
-# Smart Finance Agent
-## DeepAgents-based Multi-Agent Team for Personalized Budget Analysis
+# 🧠 Smart Finance Agent  
+### DeepAgents 기반 다중 에이전트 금융 분석 시스템
 
-### GitHub Repository
-- Project URL: https://github.com/kimiyeon/smart-finance-agent
-
----
-
-## 1. Project Overview
-
-This project implements a **special-purpose multi-agent team** using **DeepAgents** to solve a personalized finance problem.
-
-The goal of the system is to analyze a user’s spending records and generate a smart financial report through collaboration among multiple specialized agents.
-
-Instead of using one general agent, this project builds an **agent team** in which each sub-agent is responsible for a different reasoning stage:
-- transaction classification
-- spending analysis
-- budget comparison
-- final report generation
-
-This project was designed to satisfy the assignment requirement of building a **multi-agent system with at least three sub-agents** and a **multi-step reasoning process** for a user-specific goal.
+> 본 프로젝트는 DeepAgents 기반 다중 에이전트 시스템 구현 과제를 위해 제작되었습니다.
 
 ---
 
-## 2. Problem Definition
+## 📌 1. 프로젝트 개요
 
-Many household finance applications still require users to manually read, categorize, and interpret their transactions.  
-This causes two main problems:
+본 프로젝트는 DeepAgents를 활용하여  
+개인 소비 데이터를 분석하고 예산을 평가하는 **다중 에이전트 기반 금융 분석 시스템**을 구현하는 것을 목표로 한다.
 
-1. **Manual burden**: Users must classify transactions themselves.
-2. **Weak interpretation**: Even if transaction data exists, extracting useful insights and actionable recommendations is difficult.
-
-A single AI agent can answer general questions, but for a structured finance task, it is often better to divide the work across specialized agents.  
-Therefore, this project uses a multi-agent architecture to automate financial reasoning step by step.
+기존 가계부 시스템은 단순히 소비 내역을 기록하는 기능에 머무르는 경우가 많다.  
+하지만 본 시스템은 여러 개의 에이전트가 협력하여 소비 데이터를 분석하고,  
+사용자에게 **맞춤형 금융 피드백을 제공하는 것**을 목표로 한다.
 
 ---
 
-## 3. Project Goal
+## 📌 2. 문제 정의
 
-The system aims to achieve the following objectives:
+기존 개인 금융 관리 방식에는 다음과 같은 한계가 존재한다.
 
-- Automatically classify raw transaction text
-- Calculate category-wise spending
-- Compare actual spending to predefined budget limits
-- Detect possible overspending
-- Generate personalized financial recommendations
-- Produce a final easy-to-read finance report
+- 사용자가 소비 내역을 직접 해석해야 함
+- 소비 패턴을 분석하기 어려움
+- 예산 대비 지출 평가가 직관적이지 않음
 
----
-
-## 4. Why DeepAgents?
-
-This project uses **DeepAgents**, a Python library designed for building agent systems with:
-- a supervisor-based control structure
-- sub-agent delegation
-- tool usage
-- planning-oriented execution
-
-DeepAgents is suitable for this project because the finance task is not a one-step question-answering problem.  
-The system must perform several connected reasoning stages before generating the final answer.
-
-This makes it a good example of **multi-step logical reasoning**.
+또한 단일 AI 모델은 이러한 복합적인 문제를 한 번에 해결하기 어렵기 때문에,  
+**역할을 분리한 다중 에이전트 구조가 필요하다.**
 
 ---
 
-## 5. Why This Is a Multi-Agent Problem
+## 📌 3. 프로젝트 목표
 
-This project is not a simple script that calculates totals.  
-It is designed as an **agent team**, where each sub-agent has a specific professional role.
+본 시스템은 다음과 같은 기능을 수행한다.
 
-### Agent Roles
-
-#### 1) Classifier Agent
-- Reads raw spending text
-- Determines the category of each transaction
-- Example categories: food, transport, shopping, other
-
-#### 2) Analyst Agent
-- Calculates category-level totals
-- Identifies major spending patterns
-- Determines which types of spending are dominant
-
-#### 3) Budget Planner Agent
-- Compares category totals with monthly budget limits
-- Detects whether spending is within budget or over budget
-- Produces savings-oriented suggestions
-
-#### 4) Report Writer Agent
-- Collects outputs from previous agents
-- Synthesizes them into one final report
-- Presents the result in a user-friendly format
-
-#### 5) Supervisor Agent
-- Orchestrates the full workflow
-- Delegates tasks to the correct sub-agent
-- Combines intermediate results into the final answer
+- 소비 내역 자동 분류
+- 카테고리별 지출 계산
+- 예산 대비 초과 여부 판단
+- 절약 전략 제안
+- 사용자 친화적 리포트 생성
 
 ---
 
-## 6. Multi-Step Reasoning Process
+## 📌 4. 사용 기술
 
-The final financial report cannot be generated directly from raw transaction strings.  
-The system must follow a sequence of reasoning steps:
+- Python
+- LangChain
+- DeepAgents
 
-### Step 1. Transaction Understanding
-The system receives raw user transaction text such as:
-- 스타벅스 5000원
-- 지하철 1250원
-- 쿠팡 쇼핑 32000원
-- 배달의민족 18000원
-
-### Step 2. Category Classification
-The Classifier Agent determines what each transaction means and maps it into a semantic category.
-
-### Step 3. Category Aggregation
-The Analyst Agent computes total spending per category.
-
-### Step 4. Budget Evaluation
-The Budget Planner Agent compares actual spending with a predefined budget table.
-
-### Step 5. Recommendation Generation
-The system derives actionable advice, such as reducing shopping or food delivery expenses.
-
-### Step 6. Report Synthesis
-The Report Writer Agent generates the final report for the user.
-
-This sequential decision-making process demonstrates **multi-stage logical reasoning** rather than a single direct response.
+DeepAgents는 Supervisor–Subagent 구조를 통해  
+복잡한 문제를 여러 단계로 나누어 처리할 수 있는 라이브러리이다.
 
 ---
 
-## 7. System Architecture
+## 📌 5. 에이전트 구조
 
-```text
-User Input
-   ↓
+본 시스템은 총 5개의 에이전트로 구성된다.
+
+### 1) Supervisor Agent
+- 전체 흐름을 관리
+- 각 에이전트에게 작업을 분배
+
+### 2) Classifier Agent
+- 소비 내역을 카테고리로 분류  
+  (예: 음식, 교통, 쇼핑 등)
+
+### 3) Analyst Agent
+- 카테고리별 지출 총합 계산
+- 주요 소비 패턴 분석
+
+### 4) Budget Planner Agent
+- 예산과 실제 지출을 비교
+- 초과 여부 판단 및 개선 방향 제시
+
+### 5) Report Writer Agent
+- 최종 결과를 정리하여 사용자에게 제공
+
+---
+
+## 📌 6. 다단계 논리적 추론 과정
+
+본 시스템은 단순 계산이 아닌 **다단계 추론 과정**을 수행한다.
+
+### Step 1. 입력 데이터 분석  
+사용자의 소비 내역 텍스트를 입력받는다.
+
+### Step 2. 소비 분류  
+각 소비 항목을 의미 기반으로 카테고리화한다.
+
+### Step 3. 지출 집계  
+카테고리별 총 지출 금액을 계산한다.
+
+### Step 4. 예산 비교  
+사전에 정의된 예산과 비교하여 초과 여부를 판단한다.
+
+### Step 5. 전략 도출  
+소비 패턴을 기반으로 절약 방안을 제안한다.
+
+### Step 6. 결과 생성  
+최종적으로 사용자에게 금융 리포트를 제공한다.
+
+---
+
+## 📌 7. 시스템 아키텍처
+사용자 입력
+↓
 Supervisor Agent
-   ├── Classifier Agent
-   ├── Analyst Agent
-   ├── Budget Planner Agent
-   └── Report Writer Agent
-   ↓
-Final Personalized Finance Report
+├── Classifier Agent
+├── Analyst Agent
+├── Budget Planner Agent
+└── Report Writer Agent
+↓
+최종 금융 리포트
+
+---
+
+## 📌 8. 구현 기능
+
+### ✔ 소비 분류
+텍스트 기반 소비 데이터를 카테고리로 자동 분류
+
+### ✔ 지출 계산
+카테고리별 총 지출 금액 계산
+
+### ✔ 예산 비교
+지출이 예산을 초과했는지 판단
+
+### ✔ 추천 생성
+절약 및 소비 개선 전략 제시
+
+---
+
+## 📌 9. 실행 예시
+
+입력 데이터:
+스타벅스 5000원
+지하철 1250원
+쿠팡 쇼핑 32000원
+배달의민족 18000원
+
+
+출력 결과:
+
+- 음식 지출: 23,000원
+- 교통 지출: 1,250원
+- 쇼핑 지출: 32,000원
+
+- 총 지출: 56,250원
+
+- 쇼핑 지출이 높은 편 → 절약 필요
+- 음식 배달 소비 감소 권장
+
+---
+
+## 📌 10. 과제 요구사항 충족 여부
+
+### ✔ DeepAgents 사용
+- DeepAgents 기반으로 구현
+
+### ✔ 3개 이상의 서브 에이전트
+- 총 4개의 서브 에이전트 사용
+
+### ✔ 다단계 논리적 추론
+- 분류 → 집계 → 비교 → 추천 → 리포트  
+  총 5단계 이상의 추론 과정 수행
+
+### ✔ 특수 목적 에이전트
+- 개인 금융 분석 및 예산 관리 목적
+
+---
+
+## 📌 11. 장점
+
+- 역할 기반 구조로 확장 용이
+- 유지보수 용이
+- 사용자 맞춤 분석 가능
+- 다단계 추론 구조 명확
+
+---
+
+## 📌 12. 한계
+
+- 규칙 기반 분류의 한계
+- 실제 금융 API 미연동
+- 개인화 수준 제한적
+
+---
+
+## 📌 13. 향후 개선 방향
+
+- 사용자별 예산 자동 설정
+- 실제 카드/은행 데이터 연동
+- 이상 소비 탐지 기능 추가
+- 투자/저축 추천 기능 확장
+
+---
+
+## 📌 14. 결론
+
+본 프로젝트는 DeepAgents를 활용하여  
+다중 에이전트 협업을 통해 개인 금융 문제를 해결하는 시스템을 구현하였다.
+
+특히, 단순 계산이 아닌  
+**다단계 논리적 추론 과정**을 통해 결과를 도출한다는 점에서  
+AI 에이전트 시스템의 활용 가능성을 보여준다.
